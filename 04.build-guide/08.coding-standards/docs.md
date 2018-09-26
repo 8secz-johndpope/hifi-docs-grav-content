@@ -1047,3 +1047,64 @@ These types of comments are explicitly not allowed. If you need to break up sect
 //--------------------------------------------------------------------------------
 ```
 
+## 5 QML Standards
+
+### 5.1 Semicolon Usage
+
+QT's official [http://doc.qt.io/qt-5/qml-codingconventions.html](QML Coding Standards guide) and QML documentation isn't always consistent with respect to end-of-line semicolon usage. When writing QML code for High Fidelity, follow these rules with respect to semicolons:
+
+#### Multi-Line Property Expressions
+
+*DO* use semicolons at the end of lines when defining multi-line property expressions:
+
+```
+height: {
+    if (parent.height > 100) {
+        return parent.height;
+    } else {
+        return parent.height / 2;
+    }
+}
+```
+
+#### Signal Handlers
+
+*DO* use semicolons at the end of lines when defining signal handlers:
+
+```
+onRepositionLockedChanged: {
+    if (!repositionLocked) {
+        d.handleSizeChanged();
+    }
+}
+```
+
+#### JavaScript Functions within QML
+
+*DO* use semicolons at the end of lines when defining JavaScript functions and signals from within QML:
+
+```
+function fromScript(message) {
+    console.log("Hello world!");
+    console.log(JSON.stringify(message));
+}
+```
+
+```
+signal sendToScript(var message);
+```
+
+#### All Other Cases
+
+*DO NOT* use semicolons at the end of lines in all other cases:
+
+```
+id: root
+height: parent.height > 100 ? parent.height : parent.height/2
+width: 25
+
+Text {
+    text: "hello"
+    font.bold: true; font.italic: true; font.pixelSize: 20; font.capitalization: Font.AllUppercase
+}
+```
